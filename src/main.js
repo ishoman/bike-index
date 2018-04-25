@@ -3,11 +3,19 @@ import './styles.css';
 import $ from 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { API } from './bike.js'
+import { API } from './bike.js';
+
+let displayResult = function(body) {
+  $("ul#bikeinfo").append(`<li>${body.bikes[18].title}</li>`);
+}
+let displayError = function(error) {
+  $("#bikeinfo").text(`There was an error processing your request: ${error.message}`);
+}
+
 $(document).ready(function() {
   let api = new API();
-  let promise = api.makeCall();
-  console.log(promise);
+  api.makeCall(displayResult, displayError);
+
   // let promise = new Promise(function(resolve, reject) {
   //   let request = new XMLHttpRequest();
   //   let url = "https://bikeindex.org:443/api/v3/search?page=1&per_page=25&location=IP&distance=10&stolenness=stolen";
@@ -21,12 +29,4 @@ $(document).ready(function() {
   //   request.open("GET", url, true);
   //   request.send();
   // });
-
-  promise.then(function(response) {
-    const body = JSON.parse(response);
-    console.log(body.bikes[18]);
-    $("ul#bikeinfo").append(`<li>${body.bikes[0]}</li>`);
-  }, function(error) {
-    $("#bikeinfo").text(`There was an error processing your request: ${error.message}`);
-  });
 });
