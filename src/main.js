@@ -6,8 +6,18 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { API } from './bike.js';
 
 let displayResult = function(body) {
-  $("ul#bikeinfo").append(`<li>${body.bikes}</li>`);
+debugger;
+  let bikes = body.bikes;
+  for (let i = 0; i < bikes.length; i++) {
+    let title = bikes[i].title;
+    $("ol#bikeinfo").append("<li>" + title + "</li>");
+    // for (var j = 0; j > i; j++) {
+    //   let info = bikes.length[i][j];
+    //   $("ul#bikeinfo").append("<li>" + info + "</li>");
+    // }
+  }
 }
+
 let displayError = function(error) {
   $("#bikeinfo").text(`There was an error processing your request: ${error.message}`);
 }
