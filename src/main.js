@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { API } from './bike.js';
 
 let displayResult = function(body) {
-  $("ul#bikeinfo").append(`<li>${body.bikes[18].title}</li>`);
+  $("ul#bikeinfo").append(`<li>${body.bikes}</li>`);
 }
 let displayError = function(error) {
   $("#bikeinfo").text(`There was an error processing your request: ${error.message}`);
