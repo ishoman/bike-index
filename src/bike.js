@@ -14,14 +14,6 @@ class API {
       request.open("GET", url, true);
       request.send();
     });
-    promise.then(function(response) {
-      const body = JSON.parse(response);
-      console.log(body.bikes);
-      displayResult(body);
-  }, function(error) {
-    displayError(error);
-    });
-  }
-}
+
 
 export { API };
